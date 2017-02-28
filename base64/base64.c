@@ -1,3 +1,4 @@
+#include<stdio.h>
 #include<stdlib.h>
 
 typedef unsigned char byte;
@@ -74,7 +75,7 @@ __declspec(dllexport) byte* decode(const byte* c){
 	byte m2 = 0x03, m4 = 0x0F;
 	int j = 0;
 	for(i = 0; i < length; i += 4){
-		if(i + 4 >= length){
+		if(i + 4 > length){
 			p[j++] = (indexof(c[i]) << 2) ^ ((indexof(c[i+1]) >> 4) & m2);
 			if(padding == 1)
 				p[j++] = ((indexof(c[i+1]) & m4) << 4) ^ ((indexof(c[i+2]) >> 2) & m4);
@@ -95,12 +96,12 @@ int main(){
 	//byte* plain = "Man is distinguished, not only by his reason, but by this singular passion from other animals, which is a lust of the mind, that by a perseverance of delight in the continued and indefatigable generation of knowledge, exceeds the short vehemence of any carnal pleasure.";
 	//byte* cipher = encode(plain);
 	
-	byte* cipher = "TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCBieSB0aGlzIHNpbmd1bGFyIHBhc3Npb24gZnJvbSBvdGhlciBhbmltYWxzLCB3aGljaCBpcyBhIGx1c3Qgb2YgdGhlIG1pbmQsIHRoYXQgYnkgYSBwZXJzZXZlcmFuY2Ugb2YgZGVsaWdodCBpbiB0aGUgY29udGludWVkIGFuZCBpbmRlZmF0aWdhYmxlIGdlbmVyYXRpb24gb2Yga25vd2xlZGdlLCBleGNlZWRzIHRoZSBzaG9ydCB2ZWhlbWVuY2Ugb2YgYW55IGNhcm5hbCBwbGVhc3VyZS4=";
+	byte* cipher = "WW91IGRvbid0IGtub3cgdGhlIHBvd2VyIG9mIHRoZSBkYXJrIHNpZGUu";
 	byte* plain = decode(cipher);
 	
 	printf(plain);
 
-	getbyte();
+	getchar();
 	return 0;
 }
 */
